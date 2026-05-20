@@ -1,0 +1,44 @@
+meta {
+  name: Get template list
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{ehrApiUrl}}/template
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~tags: PROMS:true
+  ~search: PH*
+}
+
+assert {
+  res.status: eq 200
+  res.body: isNotEmpty
+  res.body: isJson
+  res.body.templates: isNotEmpty
+  res.body.templates: isArray
+}
+
+tests {
+  test('Got a response', () => {
+    expect(res.status).to.equal(200)
+  })
+  
+  test('Template propertx exists', () => {
+    expect(res.body).to.have.property('templates')
+  })
+  
+  test('Template property is an array', () => {
+    expect(res.body.templates).to.be.an('array')
+  })
+  
+  test('There are templates', () => {
+    expect(res.body.templates).not.to.be.empty
+  })
+  
+  
+}

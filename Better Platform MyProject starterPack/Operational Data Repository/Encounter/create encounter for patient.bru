@@ -1,0 +1,35 @@
+meta {
+  name: create encounter for patient
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{odrFhirApiUrl}}/Encounter
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/fhir+json
+}
+
+body:json {
+  {
+    "resourceType": "Encounter",
+    "identifier": [
+      {
+        "use": "usual",
+        "system": "HOSP-DEMO",
+        "value": "83463465"
+      }
+    ],
+    "status": "in-progress",
+    "subject": {
+      "reference": "Patient/11924"
+    },
+    "period": {
+      "start": "2026-01-03T11:00:00+01:00"
+    }
+  }
+}

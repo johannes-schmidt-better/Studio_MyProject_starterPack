@@ -1,0 +1,15 @@
+meta {
+  name: Get data using AQL
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{ehrApiUrl}}/query?aql=SELECT bt/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value FROM EHR e CONTAINS COMPOSITION c CONTAINS OBSERVATION bt[openEHR-EHR-OBSERVATION.body_temperature.v2] LIMIT 10
+  body: none
+  auth: inherit
+}
+
+params:query {
+  aql: SELECT bt/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value FROM EHR e CONTAINS COMPOSITION c CONTAINS OBSERVATION bt[openEHR-EHR-OBSERVATION.body_temperature.v2] LIMIT 10
+}

@@ -1,0 +1,85 @@
+meta {
+  name: Create a composition
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{ehrApiUrl}}/composition?templateId=Vital Signs Lite&ehrId=9edabd8e-39ea-4f2b-b029-38d67406271a&format=FLAT
+  body: json
+  auth: inherit
+}
+
+params:query {
+  templateId: Vital Signs Lite
+  ehrId: 9edabd8e-39ea-4f2b-b029-38d67406271a
+  format: FLAT
+  ~committerName: AndrazK
+  ~lifecycleState: incomplete
+  ~subjectId: 99
+  ~subjectNamespace: MRN
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "ctx/language": "en",
+    "ctx/territory": "US",
+    "ctx/composer_name": "Silvia Blake",
+    "ctx/id_namespace": "HOSPITAL-NS",
+    "ctx/id_scheme": "HOSPITAL-NS",
+    "ctx/participation_name": "Dr. Marcus Johnson",
+    "ctx/participation_function": "requester",
+    "ctx/participation_mode": "face-to-face communication",
+    "ctx/participation_id": "199",
+    "ctx/participation_name:1": "Lara Markham",
+    "ctx/participation_function:1": "performer",
+    "ctx/participation_id:1": "198",
+    "ctx/health_care_facility|name": "Hospital",
+    "ctx/health_care_facility|id": "9091",
+    "hoch-labor/_feeder_audit/originating_system_audit|system_id": "BIH",
+    "hoch-labor/_feeder_audit/original_content": "<Daten>\n\t<Metadaten>\n\t\t<Erstellungsdatum>2025-01-24 12:14:55</Erstellungsdatum>\n\t\t<Pseudonym>P01-0730387226-6</Pseudonym>\n\t</Metadaten>\n\t<StammdatenAllgemein>\n\t\t<PLZ>04329</PLZ>\n\t\t<Geschlecht>W</Geschlecht>\n\t</StammdatenAllgemein>\n\t<StammdatenVariabel />\n\t<Diagnose>\n\t\t<ICDCode>J45.11</ICDCode>\n\t\t<Datum>2024-11-26 00:00:00</Datum>\n\t</Diagnose>\n\t<Diagnose>\n\t\t<ICDCode>I10.00</ICDCode>\n\t\t<Datum>2024-11-29 00:00:00</Datum>\n\t</Diagnose>\n\t<Risiko>\n\t\t<Risiko>raucht seit 2008 nicht mehr ca. 10 Packyears</Risiko>\n\t\t<DatumÄnderung>2024-11-29 13:02:28</DatumÄnderung>\n\t</Risiko>\n\t<Vitalparameter>\n\t\t<RR>125  /80  mmHg</RR>\n\t\t<HF>89  bpm</HF>\n\t\t<BF>16  /min</BF>\n\t\t<Regelmäßig> ja</Regelmäßig>\n\t\t<Stärke> normal</Stärke>\n\t\t<DatumÄnderung>2025-01-07 13:47:33</DatumÄnderung>\n\t\t<SaO2>98%</SaO2>\n\t</Vitalparameter>\n\t<Symptomatik>\n\t\t<Husten>nein</Husten>\n\t\t<Auswurf_falls_Husten>nein</Auswurf_falls_Husten>\n\t\t<Luftnot>Ja, leicht gelegentlich 2 3/ Wo</Luftnot>\n\t\t<Thorakales_Engegefühl>nein</Thorakales_Engegefühl>\n\t\t<Exacerbation>nein</Exacerbation>\n\t\t<Hospitalisierung>nein</Hospitalisierung>\n\t\t<DatumÄnderung>2025-01-07 13:17:26</DatumÄnderung>\n\t</Symptomatik>\n\t<Inspektionsbefunde>\n\t\t<Zyanose>nein</Zyanose>\n\t\t<Ödeme>nein</Ödeme>\n\t\t<Überblähung>ja</Überblähung>\n\t\t<Einziehungen_thorakal>nein</Einziehungen_thorakal>\n\t\t<Fassthorax>nein</Fassthorax>\n\t\t<Klopfschall>sonor_seitengleich</Klopfschall>\n\t\t<Atemgeräusch>vorhanden, normal</Atemgeräusch>\n\t\t<Nebengeräusche>nein</Nebengeräusche>\n\t\t<Atemphase>entfällt, da keine NG</Atemphase>\n\t\t<DatumÄnderung>2025-01-07 13:28:08</DatumÄnderung>\n\t</Inspektionsbefunde>\n\t<Lungenfunktion>\n\t\t<VC_IN>3.84 L / 107%</VC_IN>\n\t\t<FVC>3.14 L / 90%</FVC>\n\t\t<FEV_1>2.30 L / 77%</FEV_1>\n\t\t<FEV_1_-_VC_IN>59.88 % / 77%</FEV_1_-_VC_IN>\n\t\t<PEF>4.87 L/s / 70%</PEF>\n\t\t<MEF_75>3.86 L/s / 66%</MEF_75>\n\t\t<MEF_50>1.32 L/s / 32%</MEF_50>\n\t\t<MEF_25>0.40 L/s / 26%</MEF_25>\n\t\t<MFEF_25-75>1.08 L/s / %</MFEF_25-75>\n\t\t<TLC>7.06 L / 120%</TLC>\n\t\t<RV_-_TLC>45.64 % / 119%</RV_-_TLC>\n\t\t<SR_tot>1.62 kPa*s / 169%</SR_tot>\n\t\t<BF>16.41 1/min / 82%</BF>\n\t\t<DatumÄnderung>2025-01-07 13:29:48</DatumÄnderung>\n\t</Lungenfunktion>\n\t<EBA_Soll_Ist1_Ist2 />\n</Daten>",
+    "hoch-labor/_feeder_audit/original_content|formalism": "application/json",
+    "hoch-labor/context/message_header_msh/message_control_id": "Message control ID 12",
+    "hoch-labor/context/message_header_msh/processing_id/processing_id": "Processing ID 67",
+    "hoch-labor/context/case_identification/fid": "FID 86",
+    "hoch-labor/service_request/_uid": "586f27e9-4bcd-4d1f-b389-bb9c7ee77805",
+    "hoch-labor/service_request/current_activity/service_name": "Laboranforderung",
+    "hoch-labor/service_request/current_activity/requested_timestamp": "2025-10-20T15:37:51.234663663+02:00",
+    "hoch-labor/service_request/current_activity/comment": "Comment 5",
+    "hoch-labor/service_request/current_activity/timing|value": "R2/2025-10-20T15:00:00+02:00/P2M",
+    "hoch-labor/service_request/requester_order_identifier": "Ident. 29",
+    "hoch-labor/service_request/receiver_order_identifier": "Ident. 43",
+    "hoch-labor/service_request/expiry_time": "2025-10-20T15:37:51.234782083+02:00",
+    "hoch-labor/service_request/narrative": "Human readable instruction narrative",
+    "hoch-labor/laboratory_test_result/any_event:0/test_name": "Test name 70",
+    "hoch-labor/laboratory_test_result/any_event:0/specimen/date_time_received": "2025-10-20T15:37:51.234816292+02:00",
+    "hoch-labor/laboratory_test_result/any_event:0/overall_test_status:0|code": "at0038",
+    "hoch-labor/laboratory_test_result/any_event:0/overall_test_status_timestamp": "2025-10-20T15:37:51.234845211+02:00",
+    "hoch-labor/laboratory_test_result/any_event:0/laboratory_analyte_result:0/analyte_name|code": "B.16",
+    "hoch-labor/laboratory_test_result/any_event:0/laboratory_analyte_result:0/analyte_name|value": "B.16 description",
+    "hoch-labor/laboratory_test_result/any_event:0/laboratory_analyte_result:0/analyte_name|terminology": "external_terminology",
+    "hoch-labor/laboratory_test_result/any_event:0/laboratory_analyte_result:0/analyte_result_as_interval/lower|magnitude": 9.63,
+    "hoch-labor/laboratory_test_result/any_event:0/laboratory_analyte_result:0/analyte_result_as_interval/lower|unit": "%",
+    "hoch-labor/laboratory_test_result/any_event:0/laboratory_analyte_result:0/analyte_result_as_interval/lower|unormal_status": "N",
+    "hoch-labor/laboratory_test_result/any_event:0/laboratory_analyte_result:0/analyte_result_as_interval/upper|magnitude": null,
+    "hoch-labor/laboratory_test_result/any_event:0/laboratory_analyte_result:0/analyte_result_as_interval/upper|unit": "%",
+    "hoch-labor/laboratory_test_result/any_event:0/laboratory_analyte_result:0/reference_range_guidance": "Reference range guidance 99",
+    "hoch-labor/laboratory_test_result/any_event:0/laboratory_analyte_result:0/result_status": "Result status 3",
+    "hoch-labor/laboratory_test_result/any_event:0/laboratory_analyte_result:0/result_status_time": "2025-10-20T15:37:51.234955979+02:00",
+    "hoch-labor/laboratory_test_result/any_event:0/laboratory_analyte_result:0/comment:0": "Comment 56",
+    "hoch-labor/laboratory_test_result/any_event:0/laboratory_analyte_result:0/source_of_comment:0|code": "T.2",
+    "hoch-labor/laboratory_test_result/any_event:0/laboratory_analyte_result:0/source_of_comment:0|value": "T.2 description",
+    "hoch-labor/laboratory_test_result/any_event:0/laboratory_analyte_result:0/source_of_comment:0|terminology": "external_terminology",
+    "hoch-labor/laboratory_test_result/any_event:0/laboratory_analyte_result:0/originalobx:0": "originalOBX 70",
+    "hoch-labor/laboratory_test_result/point-of-care_test": true
+  }
+}
+
+script:post-response {
+  bru.setEnvVar('compositionId', res.body.compositionUid)
+}

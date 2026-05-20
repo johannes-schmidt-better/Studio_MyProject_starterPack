@@ -1,0 +1,47 @@
+meta {
+  name: tag a template
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{ehrApiUrl}}/template/:templateID/tag?tags=PROMS:true
+  body: none
+  auth: inherit
+}
+
+params:query {
+  tags: PROMS:true
+}
+
+params:path {
+  templateID: QLQ-C30
+}
+
+assert {
+  res.status: eq 200
+  res.body: isNotEmpty
+  res.body: isJson
+  res.body.templates: isNotEmpty
+  res.body.templates: isArray
+}
+
+tests {
+  test('Got a response', () => {
+    expect(res.status).to.equal(200)
+  })
+  
+  test('Template propertx exists', () => {
+    expect(res.body).to.have.property('templates')
+  })
+  
+  test('Template property is an array', () => {
+    expect(res.body.templates).to.be.an('array')
+  })
+  
+  test('There are templates', () => {
+    expect(res.body.templates).not.to.be.empty
+  })
+  
+  
+}

@@ -1,0 +1,47 @@
+meta {
+  name: Update a composition
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{ehrApiUrl}}/composition/:id?format=FLAT&templateId=Vital Signs Lite
+  body: json
+  auth: inherit
+}
+
+params:query {
+  format: FLAT
+  templateId: Vital Signs Lite
+}
+
+params:path {
+  id: {{compositionId}}
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "ctx/language": "en",
+    "ctx/territory": "SI",
+    "ctx/composer_name": "andrazk",
+  
+    "vital_signs_lite/vital_signs/blood_pressure/any_event:0/systolic|magnitude": 123.0,
+    "vital_signs_lite/vital_signs/blood_pressure/any_event:0/systolic|unit": "mm[Hg]",
+    "vital_signs_lite/vital_signs/blood_pressure/any_event:0/diastolic|magnitude": 67.0,
+    "vital_signs_lite/vital_signs/blood_pressure/any_event:0/diastolic|unit": "mm[Hg]",
+    "vital_signs_lite/vital_signs/blood_pressure/any_event:0/time": "2024-12-01T08:12:34.521785463+01:00",
+  
+    "vital_signs_lite/vital_signs/body_temperature/any_event:0/temperature|magnitude": 37.8,
+    "vital_signs_lite/vital_signs/body_temperature/any_event:0/temperature|unit": "Cel"
+    
+  }
+}
+
+script:post-response {
+  bru.setEnvVar('compositionId', res.body.compositionUid) 
+}

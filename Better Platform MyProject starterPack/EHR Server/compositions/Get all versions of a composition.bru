@@ -1,0 +1,24 @@
+meta {
+  name: Get all versions of a composition
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{ehrApiUrl}}/composition/:id/versions?format=FLAT&meta=false
+  body: none
+  auth: inherit
+}
+
+params:query {
+  format: FLAT
+  meta: false
+}
+
+params:path {
+  id: {{compositionId}}
+}
+
+headers {
+  Accept: application/json
+}

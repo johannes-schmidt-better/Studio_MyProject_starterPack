@@ -1,0 +1,82 @@
+meta {
+  name: Post contribution (ehrId)
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{ehrApiUrl}}/composition/contribution
+  body: json
+  auth: inherit
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  [
+    {
+      "action": "CREATE",
+      "format": "FLAT",
+      "ehrId": "81a687fb-7bd8-45c2-b213-0cd7ab7e5958",
+      "templateId": "acceptance-template",
+      "composition": {
+        "ctx/language": "en",
+        "ctx/territory": "US",
+        "ctx/composer_name": "Silvia Blake",
+        "ctx/id_namespace": "HOSPITAL-NS",
+        "ctx/id_scheme": "HOSPITAL-NS",
+        "ctx/participation_name": "Dr. Marcus Johnson",
+        "ctx/participation_function": "requester",
+        "ctx/participation_mode": "face-to-face communication",
+        "ctx/participation_id": "199",
+        "ctx/participation_name:1": "Lara Markham",
+        "ctx/participation_function:1": "performer",
+        "ctx/participation_id:1": "198",
+        "ctx/health_care_facility|name": "Hospital",
+        "ctx/health_care_facility|id": "9091",
+        "acceptance-template/context/report_id": "Report ID 83",
+        "acceptance-template/context/status": "Status 21",
+        "acceptance-template/blood_pressure/any_event:0/systolic|magnitude": 122,
+        "acceptance-template/blood_pressure/any_event:0/systolic|unit": "mm[Hg]",
+        "acceptance-template/blood_pressure/any_event:0/diastolic|magnitude": 88,
+        "acceptance-template/blood_pressure/any_event:0/diastolic|unit": "mm[Hg]"
+      }
+    },
+    {
+      "action": "CREATE",
+      "format": "FLAT",
+      "ehrId": "8f4be9bb-a453-4f67-8807-24e9c5faa74d",
+      "templateId": "acceptance-template",
+      "composition": {
+        "ctx/language": "en",
+        "ctx/territory": "US",
+        "ctx/composer_name": "Silvia Blake",
+        "ctx/id_namespace": "HOSPITAL-NS",
+        "ctx/id_scheme": "HOSPITAL-NS",
+        "ctx/participation_name": "Dr. Marcus Johnson",
+        "ctx/participation_function": "requester",
+        "ctx/participation_mode": "face-to-face communication",
+        "ctx/participation_id": "199",
+        "ctx/participation_name:1": "Lara Markham",
+        "ctx/participation_function:1": "performer",
+        "ctx/participation_id:1": "198",
+        "ctx/health_care_facility|name": "Hospital",
+        "ctx/health_care_facility|id": "9091",
+        "acceptance-template/context/report_id": "Report ID 83",
+        "acceptance-template/context/status": "Status 21",
+        "acceptance-template/blood_pressure/any_event:0/systolic|magnitude": 122,
+        "acceptance-template/blood_pressure/any_event:0/systolic|unit": "mm[Hg]",
+        "acceptance-template/blood_pressure/any_event:0/diastolic|magnitude": 88,
+        "acceptance-template/blood_pressure/any_event:0/diastolic|unit": "mm[Hg]"
+      }
+    }
+  ]
+  
+}
+
+script:post-response {
+  bru.setEnvVar('compositionId', res.body.compositionUid)
+}

@@ -1,0 +1,39 @@
+meta {
+  name: Find ehrId for a subject
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{ehrApiUrl}}/ehr?subjectId=1234567&subjectNamespace=TEST
+  body: none
+  auth: inherit
+}
+
+params:query {
+  subjectId: 1234567
+  subjectNamespace: TEST
+}
+
+script:post-response {
+  bru.setEnvVar('ehrId', res.body.ehrId)
+}
+
+docs {
+  <p>Finding an <strong>ehrId</strong> can be done by querying the demographics data, if the information is stored in <em>additional party info</em>.</p>
+  <p>If wew have an <em>external patient Id</em>, that was passed as <code>subjectId</code> at the EHR creation time, we can query by that.</p>
+  <p>Sample response:
+  <code><pre>{
+      "meta": {
+          "href": "https://rest.ehrscape.com/rest/v1/ehr/16c9c8fc-e81c-45ce-9643-9af24b8bb276"
+      },
+      "action": "RETRIEVE",
+      "ehrStatus": {
+          "subjectId": "user123",
+          "subjectNamespace": "test",
+          "queryable": true,
+          "modifiable": true
+      },
+      "ehrId": "16c9c8fc-e81c-45ce-9643-9af24b8bb276"
+  }</pre></code></p>
+}

@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Better Platform MyProject starterPack",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

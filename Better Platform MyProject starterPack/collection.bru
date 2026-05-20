@@ -1,0 +1,95 @@
+meta {
+  name: Better Platform Sandbox 1.4
+  seq: 1
+}
+
+auth {
+  mode: oauth2
+}
+
+auth:oauth2 {
+  grant_type: password
+  access_token_url: https://studio.better.care/auth/realms/studio/protocol/openid-connect/token
+  refresh_token_url: 
+  username: {{username}}
+  password: {{password}}
+  client_id: studio-fe
+  client_secret: 
+  scope: 
+  credentials_placement: body
+  credentials_id: credentials
+  token_source: access_token
+  token_placement: header
+  token_header_prefix: Bearer
+  auto_fetch_token: true
+  auto_refresh_token: false
+}
+
+vars:pre-request {
+  authAlwaysRefreshToken: true
+}
+
+script:pre-request {
+  var axios = require('axios')
+  
+  function tokenExists() {
+    var token = bru.getVar('authToken')
+    var result = (token != undefined) && (token != "") && (token !== false)
+    console.log('OAUTH2: Access token ' + (result ? 'exists ✅' : 'does not exist ⛔️'))
+    return result
+  }
+  
+  function getTokenPayload(token) {
+      return JSON.parse(new Buffer.from(token.split('.')[1] , "base64").toString())
+  }
+  
+  function isTokenValid() {
+    var forceRefresh = bru.getVar('authAlwaysRefreshToken') || false
+    if (forceRefresh === "true") {
+        console.log('OAUTH2: Forced access token refresh 🤟')
+      return false
+    }
+    if (tokenExists()) {
+      var token = getTokenPayload(bru.getVar('authToken'))
+      var tokenStillFresh = Math.round((new Date() / 1000)) < token.exp;
+      console.log('OAUTH2: Access token ' + (tokenStillFresh ? 'is still valid ✅' : 'has expired ⛔️'))
+      return tokenStillFresh
+    } else {
+      return false
+    }
+  }
+  
+  async function getNewToken() {
+    console.log(bru.getEnvVar('host'));
+    var payload = { 'grant_type': 'password', 
+                    'client_id': 'studio-fe',
+                    'username': bru.getEnvVar('username'),
+                    'password': bru.getEnvVar('password')
+                  }
+    await axios.post('https://studio.better.care/auth/realms/studio/protocol/openid-connect/auth', 
+               payload, 
+               {
+               headers: {
+                 'Content-Type': 'application/x-www-form-urlencoded',
+                 'Accept': 'application/json'
+               }        
+    })
+    .then(response => {
+      console.log('OAUTH2: Got a new access token ✅')
+      bru.setVar('authToken', response.data.access_token)
+    })
+    .catch(error => { 
+      console.error('OAUTH2: Error fetching the access token ⛔️', error)
+    })
+  }
+  
+  if (!isTokenValid()) {
+    await getNewToken()
+  }
+  
+  
+}
+
+docs {
+  # **Better Platform Sandbox**
+}

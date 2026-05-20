@@ -1,0 +1,40 @@
+meta {
+  name: Create a patient
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{odrFhirApiUrl}}/Patient
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "resourceType": "Patient",
+    "id": "example",
+    "identifier": [
+      {
+        "use": "official",
+        "system": "http://hospital.example.org/patient-ids",
+        "value": "123456"
+      },
+      {
+        "use": "secondary",
+        "system": "http://hospital.example.org/patient-ids",
+        "value": "ABC-987654"
+      }
+    ],
+    "name": [
+      {
+        "use": "official",
+        "family": "Musterfrau",
+        "given": ["Erika"]
+      }
+    ],
+    "gender": "female",
+    "birthDate": "1980-01-01"
+  }
+  
+}

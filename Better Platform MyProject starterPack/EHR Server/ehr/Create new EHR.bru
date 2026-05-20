@@ -1,0 +1,24 @@
+meta {
+  name: Create new EHR
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{ehrApiUrl}}/ehr?subjectId=1234567&subjectNamespace=TEST
+  body: none
+  auth: inherit
+}
+
+params:query {
+  subjectId: 1234567
+  subjectNamespace: TEST
+}
+
+headers {
+  Accept: application/json
+}
+
+script:post-response {
+  bru.setEnvVar('ehrId', res.body.ehrId)
+}

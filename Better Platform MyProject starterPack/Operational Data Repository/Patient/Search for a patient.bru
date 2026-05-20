@@ -1,0 +1,17 @@
+meta {
+  name: Search for a patient
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{odrFhirApiUrl}}/Patient
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~given: heike
+  ~identifier: MRN|4284644501
+  ~family: Benes
+}

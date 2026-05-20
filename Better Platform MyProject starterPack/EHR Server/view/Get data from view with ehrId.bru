@@ -1,0 +1,40 @@
+meta {
+  name: Get data from view with ehrId
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{ehrApiUrl}}/view/:ehrId/:viewName
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~limit: 3
+}
+
+params:path {
+  ehrId: cef1d2c8-6409-4d1f-a29e-93cbe77e3b68
+  viewName: exampleEHRView_MyProject
+}
+
+docs {
+  <p>Gets recorded body temperatures for a patient.</p>
+  <p>The view query, stored on the EHR Server side looks like this:
+  <code><pre>select
+      a_a/data[at0002]/events[at0003]/time/value as time,
+      a_a/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value/magnitude as temperature,
+      a_a/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value/units as unit
+  from EHR e
+  contains OBSERVATION a_a[openEHR-EHR-OBSERVATION.body_temperature.v1]
+  where e/ehr_id/value = :ehrId 
+  &lt;#if ctx.vars.from??&gt;and a_a/data[at0002]/events[at0003]/time &gt;= :from&lt;/#if&gt;
+  &lt;#if ctx.vars.to??&gt;and a_a/data[at0002]/events[at0003]/time &lt;= :to&lt;/#if&gt;
+  order by time desc 
+  offset :offset fetch :limit</pre></code></p>
+  <p>
+  Some extra formatting is possible via Freemarker expression, where wew can pass to additional parameters:
+  <code>from</code> and <code>to</code>.
+  </p>
+}

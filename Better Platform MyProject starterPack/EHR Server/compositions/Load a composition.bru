@@ -1,0 +1,24 @@
+meta {
+  name: Load a composition
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{ehrApiUrl}}/composition/:id?format=STRUCTURED&meta=false
+  body: none
+  auth: inherit
+}
+
+params:query {
+  format: STRUCTURED
+  meta: false
+}
+
+params:path {
+  id: a8dbe0e8-5948-486a-827e-14706bdaeb9d::johanes_ucp2::1
+}
+
+headers {
+  Accept: application/json
+}

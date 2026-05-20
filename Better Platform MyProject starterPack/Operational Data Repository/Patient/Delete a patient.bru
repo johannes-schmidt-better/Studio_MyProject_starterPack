@@ -1,0 +1,15 @@
+meta {
+  name: Delete a patient
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{odrFhirApiUrl}}/Patient/:patientId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  patientId: 26686
+}

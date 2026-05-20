@@ -1,0 +1,16 @@
+meta {
+  name: Upload a template
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{ehrApiUrl}}/template
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/octet-stream
+}

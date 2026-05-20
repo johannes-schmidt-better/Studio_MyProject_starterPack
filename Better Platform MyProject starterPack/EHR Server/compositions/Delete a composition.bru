@@ -1,0 +1,23 @@
+meta {
+  name: Delete a composition
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{ehrApiUrl}}/composition/:compositionId
+  body: text
+  auth: inherit
+}
+
+params:path {
+  compositionId: 8b521437-216d-4ee8-9609-608a2e6ed19e::johanes_ucp2::1
+}
+
+script:post-response {
+  bru.setEnvVar('compositionId', res.body.compositionUid)
+}
+
+docs {
+  <p>Deletes an existing OpenEHR composition.</p>
+}

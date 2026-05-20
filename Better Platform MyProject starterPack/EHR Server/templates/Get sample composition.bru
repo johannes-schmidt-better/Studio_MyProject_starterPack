@@ -1,0 +1,25 @@
+meta {
+  name: Get sample composition
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{ehrApiUrl}}/template/:templateId/example?format=FLAT&exampleFilter=INPUT
+  body: none
+  auth: inherit
+}
+
+params:query {
+  format: FLAT
+  exampleFilter: INPUT
+  ~language: de
+}
+
+params:path {
+  templateId: Vital Signs Lite
+}
+
+headers {
+  Accept: application/json
+}

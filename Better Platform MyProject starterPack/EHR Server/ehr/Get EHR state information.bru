@@ -1,0 +1,15 @@
+meta {
+  name: Get EHR state information
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{ehrApiUrl}}/ehr/:ehrId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  ehrId: {{ehrId}}
+}

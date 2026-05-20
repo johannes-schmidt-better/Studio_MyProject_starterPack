@@ -1,0 +1,15 @@
+meta {
+  name: Get template tags
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{ehrApiUrl}}/template/tags?templateId={{templateId}}
+  body: none
+  auth: inherit
+}
+
+params:query {
+  templateId: {{templateId}}
+}

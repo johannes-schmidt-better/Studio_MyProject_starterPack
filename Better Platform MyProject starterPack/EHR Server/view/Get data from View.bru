@@ -1,0 +1,20 @@
+meta {
+  name: Get data from View
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{ehrApiUrl}}/view/:viewName
+  body: text
+  auth: inherit
+}
+
+params:query {
+  ~limitvar: 1
+  ~offsetvar: 1
+}
+
+params:path {
+  viewName: exampleView_MyProject
+}

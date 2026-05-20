@@ -1,0 +1,25 @@
+meta {
+  name: Get data using AQL - POST
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{ehrApiUrl}}/query
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "aql": "SELECT bt/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value FROM EHR e CONTAINS COMPOSITION c CONTAINS OBSERVATION bt[openEHR-EHR-OBSERVATION.body_temperature.v2] LIMIT :maxHits",
+    "aqlParameters": {
+      "maxHits": 2
+    }
+  }
+}

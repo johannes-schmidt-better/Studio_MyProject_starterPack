@@ -1,0 +1,19 @@
+meta {
+  name: Get ehr for ehrId
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{ehrApiUrl}}/ehr/:ehr
+  body: none
+  auth: inherit
+}
+
+params:path {
+  ehr: {{ehrId}}
+}
+
+script:post-response {
+  bru.setEnvVar('ehrId', res.body.ehrId)
+}

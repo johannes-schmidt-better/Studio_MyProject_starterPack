@@ -1,0 +1,29 @@
+meta {
+  name: Update EHR status - make it read-only
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{ehrApiUrl}}/ehr/:id/status
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: {{ehrId}}
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "subjectId": "99",
+    "subjectNamespace": "MRN",
+    "queryable": true,
+    "modifiable": false
+  }
+}
